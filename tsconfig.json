@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./", // enables relative imports to root
     "paths": {
-      "redux": ["src/typings/redux.d.ts"],
-      "Components/*": ["src/components/*"],
-      "Features/*": ["src/features/*"],
+//      "redux": ["src/typings/redux.d.ts"],
+//      "Components/*": ["src/components/*"],
+//      "Features/*": ["src/features/*"],
     },
     "outDir": "out/", // target for compiled files
     "allowSyntheticDefaultImports": true, // no errors on commonjs default import
@@ -23,7 +23,7 @@
       "es2017.object"
     ],
     "target": "es2015",
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,

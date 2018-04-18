@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const PATHS = {
   root: path.resolve(__dirname, './'),
@@ -9,24 +10,23 @@ const PATHS = {
   dist: path.resolve(__dirname, './dist'),
 }
 
-const DEV_SERVER = {
-  hot: true,
-  hotOnly: true,
-  historyApiFallback: true,
-  overlay: true,
-  // stats: 'verbose',
-  // proxy: {
-  //   '/api': 'http://localhost:3000'
-  // },
-  port: 8070
-}
-
 module.exports = (env = {}) => {
   console.log({ env });
 
-  const isBuild = !!env.build;
-  const isDev = !env.build;
-  const isSourceMap = !!env.sourceMap || isDev;
+  const isBuild = !!env.build
+  const isDev = !env.build
+  const isSourceMap = !!env.sourceMap || isDev
+  const DEV_SERVER = {
+    hot: isDev,
+    hotOnly: isDev,
+    historyApiFallback: true,
+    overlay: true,
+    // stats: 'verbose',
+    // proxy: {
+    //   '/api': 'http://localhost:3000'
+    // },
+    port: 8070
+  }
 
   return {
     cache: true,
@@ -35,15 +35,12 @@ module.exports = (env = {}) => {
 
     context: PATHS.root,
 
-    entry: {
-      app: [
-        './src/App.tsx',
-      ],
-    },
+    entry: './src/App.tsx',
     output: {
       path: PATHS.dist,
       filename: isDev ? '[name].js' : '[name].[hash].js',
-      publicPath: '/',
+      publicPath: '',
+      chunkFilename: isDev ? '[name].[id].chunk.js' : '[hash].[name].chunk.js',
       // chunkFilename: '[id].chunk.js',
     },
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -78,16 +75,17 @@ module.exports = (env = {}) => {
       ]
     },
     optimization: {
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          }
-        }
-      },
-      namedModules: true
+      // splitChunks: {
+        // cacheGroups: {
+          // vendors: {
+          //   test: /[\\/]node_modules[\\/]/,
+          //   name: "vendors",
+          //   chunks: "all",
+          // },
+        // }
+      // },
+      namedModules: true,
+      minimize: isBuild
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -95,6 +93,7 @@ module.exports = (env = {}) => {
           NODE_ENV: JSON.stringify(isDev ? 'development' : 'production'),
         },
       }),
+      new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({
         template: './src/index.html'
       }),
@@ -107,14 +106,6 @@ module.exports = (env = {}) => {
         new webpack.LoaderOptionsPlugin({
           minimize: true,
           debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-          beautify: false,
-          compress: {
-            screw_ie8: true
-          },
-          comments: false,
-          sourceMap: isSourceMap,
         }),
       ] : []),
     ]

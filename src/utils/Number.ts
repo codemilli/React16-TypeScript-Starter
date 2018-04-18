@@ -1,3 +1,3 @@
-export default function toNumber(str: string) {
+export function toNumber(str: string) {
   return Number(str)
 }

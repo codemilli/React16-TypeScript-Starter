@@ -38,10 +38,9 @@ module.exports = (env = {}) => {
     entry: './src/App.tsx',
     output: {
       path: PATHS.dist,
-      filename: isDev ? '[name].js' : '[name].[hash].js',
       publicPath: '',
-      chunkFilename: isDev ? '[name].[id].chunk.js' : '[hash].[name].chunk.js',
-      // chunkFilename: '[id].chunk.js',
+      filename: '[name].[hash].js',
+      chunkFilename: '[name].[hash].js'
     },
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 
@@ -67,6 +66,7 @@ module.exports = (env = {}) => {
                   'target': isDev ? 'es2015' : 'es5',
                   'isolatedModules': true,
                   'noEmitOnError': false,
+                  'removeComments': false
                 },
               },
             },

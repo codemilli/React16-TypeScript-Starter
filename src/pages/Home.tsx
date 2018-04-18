@@ -1,6 +1,6 @@
 import React, {SFC} from 'react';
 import * as _ from 'lodash'
-import toNumber from '../utils/Number';
+import {toNumber} from '../utils/Number';
 
 console.log('lodash : ', _.map)
 

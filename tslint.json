@@ -12,6 +12,7 @@
     "member-ordering": [true, { "order": "fields-first" }],
     "newline-before-return": false,
     "no-any": false,
+    "no-console": false,
     "no-empty-interface": false,
     "no-import-side-effect": [true],
     "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
@@ -27,10 +28,11 @@
     "one-variable-per-declaration": [false],
     "only-arrow-functions": [true, "allow-declarations"],
     "ordered-imports": [false],
+
     "prefer-method-signature": false,
     "prefer-template": [true, "allow-single-concat"],
     "quotemark": [true, "single", "jsx-double"],
-    "semicolon": [true, "always"],
+    "semicolon": [false, "always"],
     "trailing-comma": [true, {
       "singleline": "never",
       "multiline": {

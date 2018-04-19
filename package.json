@@ -1,9 +1,17 @@
 {
-  "name": "React16",
+  "name": "React16-Typescript-Starter",
   "version": "1.0.0",
   "main": "src/App.tsx",
   "author": "Jooyoung Moon <hckrmoon@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "React",
+    "React-Router",
+    "TypeScript",
+    "Webpack",
+    "Code-Split",
+    "Dynamic-Module-Loader"
+  ],
   "dependencies": {
     "react": "^16.3.1",
     "react-content-loader": "^3.1.1",

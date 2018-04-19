@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter, Switch} from 'react-router-dom';
-import {Route} from 'react-router';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {NotFound} from './pages/NotFound';
+import {Home} from './pages/Home';
 
 if (module.hot) {
   module.hot.accept()
@@ -11,13 +11,12 @@ if (module.hot) {
 const prefixLanguage = location.pathname.split('/')[1] || ''
 
 async function render(): Promise<void> {
-  const {Home} = await import(/* webpackChunkName: "home" */ './pages/Home')
   const root = document.getElementById('root')
 
   ReactDOM.render((
     <BrowserRouter>
       <Switch>
-        <Route path={`/${prefixLanguage}`} component={Home}></Route>
+        <Route path={`/${prefixLanguage}`} component={Home} />
         <Route component={NotFound}></Route>
       </Switch>
     </BrowserRouter>

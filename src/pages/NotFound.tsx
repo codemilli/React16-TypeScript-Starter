@@ -1,5 +1,5 @@
 import React, {SFC} from 'react';
-import {toNumber} from '../utils/Number';
+import {toNumber} from '../core/utils/Number';
 
 export const NotFound: SFC = () => (
   <div>

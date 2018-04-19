@@ -38,7 +38,7 @@ module.exports = (env = {}) => {
     entry: './src/App.tsx',
     output: {
       path: PATHS.dist,
-      publicPath: '',
+      publicPath: '/',
       filename: '[name].[hash].js',
       chunkFilename: '[name].[hash].js'
     },

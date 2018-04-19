@@ -33,6 +33,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server",
-    "build": "webpack --env.build"
+    "build": "webpack --env.build",
+    "tslint": "tslint -c tslint.json src/**/*.{ts,tsx}"
   }
 }

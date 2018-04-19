@@ -21,6 +21,8 @@ export class DynamicComponentLoader extends React.Component<DynamicComponentLoad
     prefetch: false
   }
 
+  mounted = true
+
   /**
    * DynamicComponentLoader class constructor method
    * @constructs
@@ -30,17 +32,30 @@ export class DynamicComponentLoader extends React.Component<DynamicComponentLoad
 		super(props)
 
     this.state = {
-		  isLoading: true,
+		  isLoading: false,
 		}
 	}
 
 	async componentDidMount() {
-	  const comp = await this.props.loader()
+	  this.setState({ isLoading: true })
 
-    this.setState({
-      comp,
-      isLoading: false
-    })
+    const start = Date.now()
+	  const comp = await this.props.loader()
+    const duration = Date.now() - start
+    const timeout = duration > 4 ? 2000 : 0
+
+    setTimeout(() => {
+      if (this.mounted) {
+        this.setState({
+          comp,
+          isLoading: false
+        })
+      }
+    }, timeout)
+  }
+
+  componentWillUnmount() {
+	  this.mounted = false
   }
 
   /**
@@ -50,6 +65,7 @@ export class DynamicComponentLoader extends React.Component<DynamicComponentLoad
 	render() {
 	  const {loading = null} = this.props
 	  const {isLoading, comp = null} = this.state
+
 		return (
       isLoading ? loading : comp
 		)

@@ -2,6 +2,8 @@ import React, {SFC} from 'react';
 import {toNumber} from '../core/utils/Number';
 import {Link, Route} from 'react-router-dom';
 import {ComponentLoader} from '../components/DynamicComponentLoader';
+import {LoadingGamePage} from '../components/loadings/LoadingGamePage';
+import {LoadingViewerPage} from '../components/loadings/LoadingViewerPage';
 
 interface Props {
   title: string
@@ -13,7 +15,7 @@ const GamePageLoaderComponent = ComponentLoader({
     const {GamePage} = await import(/* webpackChunkName: "GamePage" */ './GamePage')
     return <GamePage title="Hello Game"/>
   },
-  loading: <div>Loading...</div>
+  loading: <LoadingGamePage />
 })
 
 const ViewerPageLoaderComponent = ComponentLoader({
@@ -21,7 +23,7 @@ const ViewerPageLoaderComponent = ComponentLoader({
     const {ViewerPage} = await import(/* webpackChunkName: "ViewerPage" */ './ViewerPage')
     return <ViewerPage title="Hello Viewer"/>
   },
-  loading: <div>Loading...</div>
+  loading: <LoadingViewerPage />
 })
 
 export const Home: SFC<Props> = ({title, match}) => {
@@ -38,7 +40,7 @@ export const Home: SFC<Props> = ({title, match}) => {
         </Link>
       </nav>
 
-      <div>
+      <div style={{width: 400}}>
         <Route path={match.url + '/games'} component={GamePageLoaderComponent} />
         <Route path={match.url + '/viewer'} component={ViewerPageLoaderComponent} />
       </div>

@@ -1,4 +1,4 @@
-# React16-Starter
+# React16-TypeScript-Starter
 ### React 16.3, React Router 4, Webpack 4, TypeScript and Dynamic module importing settings
 
 This quick start guide will teach you how to wire up TypeScript with below techs.

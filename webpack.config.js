@@ -30,7 +30,7 @@ module.exports = (env = {}) => {
 
   return {
     cache: true,
-    devtool: isDev ? 'eval-source-map' : 'source-map',
+    devtool: isDev ? 'eval-source-map' : false,
     devServer: DEV_SERVER,
 
     context: PATHS.root,

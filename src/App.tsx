@@ -15,7 +15,7 @@ ReactDOM.render((
   <BrowserRouter>
     <Switch>
       <Route path={`/${prefixLanguage}`} component={Home} />
-      <Route component={NotFound}></Route>
+      <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
 ), root)

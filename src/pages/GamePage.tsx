@@ -14,25 +14,25 @@ interface GamePageState {
  */
 export class GamePage extends React.Component<GamePageProps, GamePageState> {
 
-	/**
-	 * GamePage class constructor method
-	 * @constructs
-	 * @param {GamePageProps} props
-	 */
-	constructor(props: GamePageProps) {
-		super(props)
-	}
+  /**
+   * GamePage class constructor method
+   * @constructs
+   * @param {GamePageProps} props
+   */
+  constructor(props: GamePageProps) {
+    super(props)
+  }
 
-	/**
-	 * GamePage React Component render method
-	 * @returns {JSX.Element}
-	 */
-	render() {
-    const {title} = this.props
+  /**
+   * GamePage React Component render method
+   * @returns {JSX.Element}
+   */
+  render() {
+    const {title} = this.props;
     return (
       <div>
         <h2>{title} Game Page !!!!! {toNumber('1')}</h2>
       </div>
     )
-	}
+  }
 }

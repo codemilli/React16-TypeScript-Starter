@@ -14,24 +14,24 @@ interface ViewerPageState {
  */
 export class ViewerPage extends React.Component<ViewerPageProps, ViewerPageState> {
 
-	/**
-	 * ViewerPage class constructor method
-	 * @constructs
-	 * @param {ViewerPageProps} props
-	 */
-	constructor(props: ViewerPageProps) {
-		super(props)
-	}
+  /**
+   * ViewerPage class constructor method
+   * @constructs
+   * @param {ViewerPageProps} props
+   */
+  constructor(props: ViewerPageProps) {
+    super(props);
+  }
 
-	/**
-	 * ViewerPage React Component render method
-	 * @returns {JSX.Element}
-	 */
-	render() {
-		return (
+  /**
+   * ViewerPage React Component render method
+   * @returns {JSX.Element}
+   */
+  render() {
+    return (
       <div>
         <h2> Viewer Page !!!!! {toNumber('1')} </h2>
       </div>
-		)
-	}
+    );
+  }
 }

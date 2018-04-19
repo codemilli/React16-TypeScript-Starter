@@ -15,7 +15,7 @@ const GamePageLoaderComponent = ComponentLoader({
     const {GamePage} = await import(/* webpackChunkName: "GamePage" */ './GamePage')
     return <GamePage title="Hello Game"/>
   },
-  loading: <LoadingGamePage />
+  loading: <LoadingGamePage />,
 })
 
 const ViewerPageLoaderComponent = ComponentLoader({
@@ -23,7 +23,7 @@ const ViewerPageLoaderComponent = ComponentLoader({
     const {ViewerPage} = await import(/* webpackChunkName: "ViewerPage" */ './ViewerPage')
     return <ViewerPage title="Hello Viewer"/>
   },
-  loading: <LoadingViewerPage />
+  loading: <LoadingViewerPage />,
 })
 
 export const Home: SFC<Props> = ({title, match}) => {

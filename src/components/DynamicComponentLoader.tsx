@@ -1,13 +1,13 @@
-import React, {SFC} from 'react';
+import React, {SFC} from 'react'
 
 interface DynamicComponentLoaderProps {
-  prefetch?: boolean,
-  loading?: JSX.Element,
-  loader: () => Promise<JSX.Element>,
+  prefetch?: boolean
+  loading?: JSX.Element
+  loader: () => Promise<JSX.Element>
 }
 
 interface DynamicComponentLoaderState {
-  isLoading: boolean,
+  isLoading: boolean
   comp?: JSX.Element
 }
 
@@ -18,7 +18,7 @@ interface DynamicComponentLoaderState {
 export class DynamicComponentLoader extends React.Component<DynamicComponentLoaderProps, DynamicComponentLoaderState> {
 
   public static defaultProps: Partial<DynamicComponentLoaderProps> = {
-    prefetch: false
+    prefetch: false,
   }
 
   mounted = true
@@ -28,19 +28,19 @@ export class DynamicComponentLoader extends React.Component<DynamicComponentLoad
    * @constructs
    * @param {DynamicComponentLoaderProps} props
    */
-	constructor(props: DynamicComponentLoaderProps) {
-		super(props)
+  constructor(props: DynamicComponentLoaderProps) {
+    super(props)
 
     this.state = {
-		  isLoading: false,
-		}
-	}
+      isLoading: false,
+    }
+  }
 
-	async componentDidMount() {
-	  this.setState({ isLoading: true })
+  async componentDidMount() {
+    this.setState({isLoading: true})
 
     const start = Date.now()
-	  const comp = await this.props.loader()
+    const comp = await this.props.loader()
     const duration = Date.now() - start
     const timeout = duration > 4 ? 2000 : 0
 
@@ -48,28 +48,28 @@ export class DynamicComponentLoader extends React.Component<DynamicComponentLoad
       if (this.mounted) {
         this.setState({
           comp,
-          isLoading: false
+          isLoading: false,
         })
       }
     }, timeout)
   }
 
   componentWillUnmount() {
-	  this.mounted = false
+    this.mounted = false
   }
 
   /**
    * DynamicComponentLoader React Component render method
    * @returns {JSX.Element}
    */
-	render() {
-	  const {loading = null} = this.props
-	  const {isLoading, comp = null} = this.state
+  render() {
+    const {loading = null} = this.props
+    const {isLoading, comp = null} = this.state
 
-		return (
+    return (
       isLoading ? loading : comp
-		)
-	}
+    )
+  }
 }
 
 export const ComponentLoader = (options: DynamicComponentLoaderProps): SFC => {

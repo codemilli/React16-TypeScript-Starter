@@ -9,18 +9,13 @@ if (module.hot) {
 }
 
 const prefixLanguage = location.pathname.split('/')[1] || ''
+const root = document.getElementById('root')
 
-async function render(): Promise<void> {
-  const root = document.getElementById('root')
-
-  ReactDOM.render((
-    <BrowserRouter>
-      <Switch>
-        <Route path={`/${prefixLanguage}`} component={Home} />
-        <Route component={NotFound}></Route>
-      </Switch>
-    </BrowserRouter>
-  ), root)
-}
-
-render()
+ReactDOM.render((
+  <BrowserRouter>
+    <Switch>
+      <Route path={`/${prefixLanguage}`} component={Home} />
+      <Route component={NotFound}></Route>
+    </Switch>
+  </BrowserRouter>
+), root)
